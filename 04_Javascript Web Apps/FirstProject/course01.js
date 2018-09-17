@@ -1,11 +1,13 @@
 //console.log("Hello World!");
 var x;
-console.log(x);
 
 var b = false;
-var q = 10;
+var q = "10a";
 var c = b || q > 10;
 
 b = "asdf";
 
-console.log(b > c);
+var numberQ = Number(q);
+var isNumber = isNaN(numberQ);
+
+console.log(isNumber);
