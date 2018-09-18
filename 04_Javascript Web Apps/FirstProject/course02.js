@@ -3,10 +3,10 @@ var square = function(x) {
     return x*x;
 }
 
-console.log(typeof square)
-
 var a = square(12);
+
 var y = 12;
+
 var f = function() {
     var b = 0;
     x = y + 13;
@@ -22,7 +22,7 @@ console.log(typeof a); //ist eine function
 console.log(a());
 console.log(a());
 
-f();
+
 //javascript is function scoped
 //console.log(b); //-> Causes an error since b is only declared locally
 console.log(a);
