@@ -53,9 +53,10 @@ personCreator(bob, "Bob", 231)
 function Person(name, age) {
   this.name = name;
   this.age = age;
-  this.speak = function (phrase) {
-    console.log(this.name + " says '" + phrase + "'");
-  }
+}
+
+Person.prototype.speak = function (phrase) {
+  console.log(this.name + " says '" + phrase + "'");
 }
 
 var alice = new Person("Alice", 22);
