@@ -4,7 +4,8 @@ var alphabetString = "a=.-;b=-...;c=-.-.;d=-..;e=.;f=..-;g=--.;h=....;i=..;j=.--
 
 var dictionary = {};
 alphabetString.split(";").forEach(value => {
-  dictionary[value.split("=")[0]] = value.split("=")[1];
+  var split = value.split("=");
+  split[1] && (dictionary[split[0]] = split[1]);
 });
 
 var morseCodeToChar = function (morseCode) {
@@ -16,7 +17,7 @@ var charToMorseCode = function (letter) {
     return dictionary[letter];
   }
 }
-y
+
 var convertToMorse = function (word) {
   var morseCode = "";
   word.split('').forEach(char => {
