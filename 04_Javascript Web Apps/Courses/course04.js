@@ -55,11 +55,23 @@ function Person(name, age) {
   this.age = age;
 }
 
+
 Person.prototype.speak = function (phrase) {
   console.log(this.name + " says '" + phrase + "'");
 }
 
+console.log("Calling prototype function: ");
+
+
+
 var alice = new Person("Alice", 22);
+
 var bob = new Person("Bob", 25);
+bob.speak("his phrase");
+Person.prototype.speak = function (phrase) {
+  console.log("Test " + phrase);
+
+}
+bob.speak("his phrase");
 
 alice.lastname = "Wonderland";
