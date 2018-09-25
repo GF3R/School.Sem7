@@ -10,7 +10,7 @@ Only 3 more semesters (Hopefully)
 ## [03 Berechnbarkeit und Komplexität](./03_Berechnbarkeit%20und%20Komplexität)
 ### Math
 
-## [04 Javascript Web apps](.04_Javascript%20Web%20Apps)
+## [04 Javascript Web apps](./04_Javascript%20Web%20Apps)
 ### Javascript and whats wrong with it
 
 
