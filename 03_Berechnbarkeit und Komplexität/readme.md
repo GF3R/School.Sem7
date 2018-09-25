@@ -6,6 +6,6 @@ Automaten und Formale sprachen 2.0
 
 ## Exercises
 
-### [Exercise 0](./Exercies/serie0.md)
+### [Exercise 0](./Exercises/serie0.md)
 A exercise about the touring machine
 
