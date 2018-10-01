@@ -30,7 +30,7 @@ Person.prototype.speak = function(phrase){
 
 ### Prototypes and constructors
 
-![Inheritance](../Graphics/Inheritance_JSvsJava.pngGraphics/)
+![Inheritance](../Graphics/Inheritance_JSvsJava.png)
 
 ### [course05.js](../Courses/course05.js)
 
