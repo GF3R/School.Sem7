@@ -5,6 +5,7 @@
   * Arrays
   
 ## [Course 01.10.2017](./Notes/Course_0110.md)
-  * 
+  * prototypes
+  * inheritance
 
 ------
