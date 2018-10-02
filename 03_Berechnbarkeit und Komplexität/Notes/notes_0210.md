@@ -28,4 +28,4 @@ This thesis expresses the fact the the TMs is the most powerfull computational m
 ```
 Intuitive notion of algorithms == Turing machine algorithms
 ```
-<img src="../Graphics/RelAmongClasses.png" height="600" />
+<img src="../Graphics/RelAmongClasses.png" height="400" />
