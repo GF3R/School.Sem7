@@ -33,7 +33,7 @@ L4 = {a^n | n = p^2 + q^2}
 
 Logical And in a Touring Machine:
 
-<img src="./serie0_ex2_machineLogicalAnd.png" height="300" />
+<img src="./serie0_ex2_machineLogicalAnd.png" height="600" />
 
 Log2 in a Touring Machine:
 
@@ -56,4 +56,9 @@ Algo unari
 ```
 |000|000|000|000
 //... and so on ..//
+```
+
+```
+00000000|0000000
+//.. now we are done ..//
 ```
