@@ -41,7 +41,7 @@ Log2 in a Touring Machine:
 
 <img src="./serie0_ex2_machineLogPartB.png" height="600" />
 
-Algo unari
+Algo unari (only one tape)
 
 ```
 ||||||||||||||||
