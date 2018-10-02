@@ -16,3 +16,16 @@ Languag and problems are very close:
   corresponds to: 
 * decides if 2337 belongs to the set (or language of all prime numbers)
 
+## Algorithm
+
+An algorithm is a finite collection of basic instructions or operations that perform some tasks. 
+An algorithm *always stops*
+
+## Church-Turing Thesis
+
+This thesis expresses the fact the the TMs is the most powerfull computational model. 
+
+```
+Intuitive notion of algorithms == Turing machine algorithms
+```
+<img src="../Graphics/RelAmongClasses.png" height="600" />
