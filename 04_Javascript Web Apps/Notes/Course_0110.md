@@ -33,6 +33,16 @@ Person.prototype.speak = function(phrase){
 ![Inheritance](../Graphics/Inheritance_JSvsJava.png)
 
 ### [course05.js](../Courses/course05.js)
+------
+Ineritance
 
+Der constructor is immer nicht enumarble, d.h. er kann in einem foreach über die keys nicht gefunden werden. 
+Dies kann auch folgendermassen erzielt werden: 
+```
+Object.defineProperty(sub.prototype, 'constructor', {
+    enumerable: false,
+    value: function
+  });
 
+```
 
