@@ -36,9 +36,6 @@ Was ist ein Overshoot?
 Beispiel für PID?
 PID in der Praxis, was sind die limitierenden Faktoren?
 
-
-
-
 ## Sensors / Actors
 
 Was ist das Noumenon?
