@@ -14,4 +14,20 @@ Noumenon
 
 "*Das Ding an und für sich*"
 
-Das Ding kann vermessen werden, z.B. Temperatur, Licht usw. Dies sind dan Phänomene
+Das Ding kann vermessen werden, z.B. Temperatur, Licht usw. Dies sind dann Phänomene oder so.
+
+## Domänen
+
+ - Zeitdomäne
+ - Frequenzdomäne
+Von der Zeit in die Frequenzdomäne -> Fourier transformation
+
+## 
+
+Alias Funktionen gibt es unendlich viele -> bedeutet alle die das gleiche ergeben.
+
+sin(delta T * pi)
+
+Sampling and aliasing (frequenz)
+![sampling](../Graphics/Sampling_1.png)
+

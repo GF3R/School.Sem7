@@ -32,7 +32,13 @@ Font.prototype.render = function (text) {
 
 Font.prototype.write = function (text, to) {
   to = to || console.log;
-  to(this.render(text));
+  if (out instanceof Array){
+    for(var i= 0; i < out.length; i++){
+      to(out[i]);
+    }
+  }  else{
+    to(out);
+  }
 }
 
 function SingleLineChar(name, chars){
