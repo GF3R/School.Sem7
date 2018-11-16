@@ -61,7 +61,7 @@ connection: close
 
 Zum offen halten oder bei 1.0 
 ```
-GET / HTTP/1.0
+
 Connection: Keep-alive
 ```
 
