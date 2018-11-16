@@ -3,7 +3,7 @@
 #include <zlib.h>
 #include <stdbool.h>
 #include <string.h>
-
+#include <stdio.h>
 /**
  * Try to compress a response body.  Updates @a buf and @a buf_size.
  *
@@ -39,7 +39,8 @@ answer_to_connection (void *cls,
 		      size_t *upload_data_size,
 		      void **con_cls)
 {
-  char *page
+  	
+	char *page
     = strdup ("<html><body>Hello, browser!</body></html>"
 	      "<html><body>Hello, browser!</body></html>"
 	      "<html><body>Hello, browser!</body></html>"
@@ -75,7 +76,12 @@ answer_to_connection (void *cls,
 			    MHD_HTTP_OK,
 			    response);
   MHD_destroy_response (response);
-  return ret;
+  fprintf(stderr, "Request recieved from");
+  fprintf(stderr, url);
+  struct sockaddr *pSockaddr = MHD_get_connection_info(connection, MHD_CONNECTION_INFO_CLIENT_ADDRESS);
+
+  fprintf(stderr, "\n");
+	return ret;
 }
 
 
@@ -95,3 +101,5 @@ main ()
   MHD_stop_daemon (daemon);
   return 0;
 }
+
+
