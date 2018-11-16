@@ -4,21 +4,13 @@
 #include <stdbool.h>
 #include <string.h>
 
-
-static ssize_t
-crc (void *cls,
-     uint64_t pos,
-     char *buf,
-     size_t size_max)
-{
-  if (0 == size_max)
-    return 0;
-  if (0 == rand() % 1024 * 1024)
-    return MHD_CONTENT_READER_END_OF_STREAM;
-  *buf = 'b';
-  return 1;
-}
-
+/**
+ * Try to compress a response body.  Updates @a buf and @a buf_size.
+ *
+ * @param[in,out] buf pointer to body to compress
+ * @param[in,out] buf_size pointer to initial size of @a buf
+ * @return true if buf was compressed
+ */
 int
 body_compress (void **buf, size_t *buf_size)
 {
@@ -26,6 +18,11 @@ body_compress (void **buf, size_t *buf_size)
   Bytef *cbuf = malloc (cbuf_size);
   int ret = compress (cbuf, &cbuf_size,
      (const Bytef *) *buf, *buf_size);
+  if ((Z_OK != ret) || (cbuf_size >= *buf_size))
+    {
+      free (cbuf); return 0;
+    }
+  free (*buf);
   *buf = (void *) cbuf;
   *buf_size = (size_t) cbuf_size;
   return 1;
@@ -42,44 +39,38 @@ answer_to_connection (void *cls,
 		      size_t *upload_data_size,
 		      void **con_cls)
 {
-   char *page = strdup ("<html><body><h1>Hello,browser!</h1><h1>Hello, browser!</h1><h1>Hello, browser!</h1><h1>Hello, browser!</h1><h1>Hello, browser!</h1><h1>Hello, browser!</h1><h1>Hello, browser!</h1><h1>Hello, browser!</h1><h1>Hello, browser!</h1><h1>Hello, browser!</h1><h1>Hello, browser!</h1><h1>Hello, browser!</h1><h1>Hello, browser!</h1><h1>Hello, browser!</h1></body></html>"
-	
+  char *page
+    = strdup ("<html><body>Hello, browser!</body></html>"
+	      "<html><body>Hello, browser!</body></html>"
+	      "<html><body>Hello, browser!</body></html>"
+	      "<html><body>Hello, browser!</body></html>"
+	      "<html><body>"
+        "<br><h1>hoi</h1></body></html>"
+	      "<html><body>Hello, browser!</body></html>"
+	      "<html><body>Hello, browser!</body></html>"
+	      "<html><body>Hello, browser!</body></html>"
+	      "<html><body>Hello, browser!</body></html>"
 	      );
   size_t plen;
   int ret;
-  int compressed;
-  const char* sup;
+  bool compressed;
+  const char *sup;
 
-  sup = MHD_lookup_connection_value (connection, MHD_HEADER_KIND, MHD_HTTP_HEADER_ACCEPT_ENCODING);
-  
-  plen = strlen(page);
-
-  compressed = 0;
-  {
-    char *b;
-    b = strdup (sup);
-    for (char *tok = strtok (b, ", "); NULL != tok; tok = strtok (NULL, ", "))
-      if (0 == strcasecmp (tok, "gzip"))
-	{
-	  compressed = body_compress ((void **) &page,
-				      &plen);
-	  break;
-	}
-    free (b);
-  }
-
-
+  plen = strlen (page);
+  sup = MHD_lookup_connection_value (connection,
+				     MHD_HEADER_KIND,
+				     MHD_HTTP_HEADER_ACCEPT_ENCODING);
+  compressed = false;
+ 
   struct MHD_Response *response
-     = MHD_create_response_from_buffer(plen, page, MHD_RESPMEM_MUST_FREE);
-  if(compressed)
-   MHD_add_response_header (response,
+     = MHD_create_response_from_buffer
+    (plen,
+     page,
+     MHD_RESPMEM_MUST_FREE);
+  if (compressed)
+    MHD_add_response_header (response,
 			     MHD_HTTP_HEADER_CONTENT_ENCODING,
 			     "gzip");
-
-  MHD_add_response_header (response,
-  MHD_HTTP_HEADER_CONTENT_ENCODING,
-  "test");
-
   ret = MHD_queue_response (connection,
 			    MHD_HTTP_OK,
 			    response);

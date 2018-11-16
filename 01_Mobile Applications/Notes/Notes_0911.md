@@ -86,5 +86,5 @@ The Time is neccessary due to caching, (expiration time)
 
 ## C Commands to compile:
 
-gcc -I$HOME/include -L$HOME/lib main.c -lmicrohttpd -o main
+gcc -I$HOME/include -L$HOME/lib main.c -lmicrohttpd -zl -o main
 export LD_LIBRARY_PATH=$HOME/lib
