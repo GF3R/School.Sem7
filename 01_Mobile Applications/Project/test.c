@@ -4,6 +4,10 @@
 #include <stdbool.h>
 #include <string.h>
 #include <stdio.h>
+#include <sys/types.h>
+#include <netinet/in.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
 /**
  * Try to compress a response body.  Updates @a buf and @a buf_size.
  *
@@ -78,12 +82,13 @@ answer_to_connection (void *cls,
   MHD_destroy_response (response);
   fprintf(stderr, "Request recieved from");
   fprintf(stderr, url);
-  struct sockaddr *pSockaddr = MHD_get_connection_info(connection, MHD_CONNECTION_INFO_CLIENT_ADDRESS);
-
+  struct sockaddr *sa = MHD_get_connection_info(connection, MHD_CONNECTION_INFO_CLIENT_ADDRESS);
+  struct sockaddr_in *sin = (struct sockaddr_in *) sa;
+  char* ip = inet_ntoa(sin->sin_addr);
+  fprintf(stderr, ip);
   fprintf(stderr, "\n");
 	return ret;
 }
-
 
 int
 main ()
