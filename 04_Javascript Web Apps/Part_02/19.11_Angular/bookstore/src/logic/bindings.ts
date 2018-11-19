@@ -1,0 +1,4 @@
+enum Bookbinding {
+  PAPERBACK,
+  OTHER    
+}

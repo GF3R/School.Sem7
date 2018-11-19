@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {FormsModule} from "@angular/forms";
 import { CatalogComponent } from './catalog/catalog.component';
 
 @NgModule({
@@ -12,9 +11,8 @@ import { CatalogComponent } from './catalog/catalog.component';
     CatalogComponent
   ],
   imports: [
-      BrowserModule,
-      AppRoutingModule,
-      FormsModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

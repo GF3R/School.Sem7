@@ -84,7 +84,8 @@ answer_to_connection (void *cls,
   fprintf(stderr, url);
   struct sockaddr *sa = MHD_get_connection_info(connection, MHD_CONNECTION_INFO_CLIENT_ADDRESS);
   struct sockaddr_in *sin = (struct sockaddr_in *) sa;
-  char* ip = inet_ntoa(sin->sin_addr);
+  int ip =(int) sin->sin_addr;
+  //char* ip = inet_ntoa(sin->sin_addr);
   fprintf(stderr, ip);
   fprintf(stderr, "\n");
 	return ret;
