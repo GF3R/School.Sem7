@@ -1,0 +1,12 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{title}}!
+  </h1>
+</div>
+Name: <input [(ngModel)]="name">
+<button (click)="sayHello()" [disabled]="!name">Say Hello</button>
+<br><br>
+{{greeting}}
+{{name}}
+<router-outlet></router-outlet>
