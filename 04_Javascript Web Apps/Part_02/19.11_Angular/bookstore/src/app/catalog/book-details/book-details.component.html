@@ -1,0 +1,20 @@
+<h2>book details</h2>
+<br>
+<button type="button" class="btn btn-info" (click)="back.emit()">Back</button>
+<br>
+<table class="table">
+    <tr>
+      <th>{{book.title}}</th>
+    </tr>
+    <tr>
+      <td>
+        <p>{{book.description}}</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <img [src]="book.imageUrl"/>
+      </td>
+    </tr>
+  </table>
+
