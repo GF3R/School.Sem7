@@ -37,7 +37,8 @@ static int answer_to_connection (void *cls, struct MHD_Connection *connection,
 {
   const char *page = "<html><body>Hello, browser!</body></html>";
 
-  json_t *j = jsonpack("{s:1,s:1}", "hello", 5,"world",10);
+  json_t *j = json_pack("{s:1,s:1}", "hello", 5,"world",10);
+  char s = json_dumps(j,0);
 
   struct MHD_Response *response = MHD_create_response_from_callback(MHD_SIZE_UNKNOWN, 1024 , &crc , NULL, NULL);
   int ret;
