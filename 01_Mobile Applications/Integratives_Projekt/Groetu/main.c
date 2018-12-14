@@ -12,6 +12,7 @@
 #include <microhttpd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <jansson.h>
 
 #define PORT 8888
 
@@ -35,6 +36,9 @@ static int answer_to_connection (void *cls, struct MHD_Connection *connection,
                       size_t *upload_data_size, void **con_cls)
 {
   const char *page = "<html><body>Hello, browser!</body></html>";
+
+  json_t *j = jsonpack("{s:1,s:1}", "hello", 5,"world",10);
+
   struct MHD_Response *response = MHD_create_response_from_callback(MHD_SIZE_UNKNOWN, 1024 , &crc , NULL, NULL);
   int ret;
   (void)cls;               /* Unused. Silent compiler warning. */
@@ -46,7 +50,7 @@ static int answer_to_connection (void *cls, struct MHD_Connection *connection,
   (void)con_cls;           /* Unused. Silent compiler warning. */
 
   response =
-    MHD_create_response_from_buffer (strlen (page), (void *) page, 
+    MHD_create_response_from_buffer (strlen (j), (void *) j, 
 				     MHD_RESPMEM_PERSISTENT);
   MHD_add_response_header (response , MHD_HTTP_HEADER_CONTENT_TYPE, "text/html");
   ret = MHD_queue_response (connection, MHD_HTTP_OK, response);

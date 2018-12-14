@@ -1,6 +1,7 @@
 import {Book} from '../../logic/book';
 import {Component, Input, OnInit} from '@angular/core';
 import {BOOK_DATA} from "../../logic/import_bookdata";
+import {CatalogService} from "../catalog.service";
 
 @Component({
     selector: 'stuff',
@@ -13,16 +14,18 @@ export class CatalogComponent implements OnInit {
     books: Book[];
     selectedBook: Book;
     keywords: string;
+    error: string;
 
-    constructor() {
-        this.books = BOOK_DATA;
+
+    constructor(private catalogService: CatalogService) {
+        this.books = this.catalogService.getLastSearchResults();
     }
 
     searchBooks() {
-        this.books = BOOK_DATA;
-        this.books = this.books.filter(book => book.title.toLowerCase().includes(this.keywords.toLowerCase()));
+        this.catalogService.searchBooks(this.keywords)
+            .then(books => this.books = books)
+            .catch(error => this.error = error);
     }
-
 
     ngOnInit() {
     }
