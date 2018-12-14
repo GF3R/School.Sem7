@@ -37,8 +37,8 @@ static int answer_to_connection (void *cls, struct MHD_Connection *connection,
 {
   const char *page = "<html><body>Hello, browser!</body></html>";
 
-  json_t *j = json_pack("{s:1,s:1}", "hello", 5,"world",10);
-  char s = json_dumps(j,0);
+  json_t *j = json_pack("{s:i,s:i}", "hello", 5, "world", 10);
+  char *s = json_dumps(j, 0);
 
   struct MHD_Response *response = MHD_create_response_from_callback(MHD_SIZE_UNKNOWN, 1024 , &crc , NULL, NULL);
   int ret;
@@ -51,7 +51,7 @@ static int answer_to_connection (void *cls, struct MHD_Connection *connection,
   (void)con_cls;           /* Unused. Silent compiler warning. */
 
   response =
-    MHD_create_response_from_buffer (strlen (j), (void *) j, 
+    MHD_create_response_from_buffer (strlen (s), (void *) s, 
 				     MHD_RESPMEM_PERSISTENT);
   MHD_add_response_header (response , MHD_HTTP_HEADER_CONTENT_TYPE, "text/html");
   ret = MHD_queue_response (connection, MHD_HTTP_OK, response);
