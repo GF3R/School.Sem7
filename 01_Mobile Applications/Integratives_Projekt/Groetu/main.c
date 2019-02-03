@@ -40,11 +40,11 @@ static int answer_to_connection (void *cls, struct MHD_Connection *connection,
                       size_t *upload_data_size, void **con_cls)
 {
   int ret = 0;
-  if(strcmp(method, "GET")){
+  if(strcmp(method, "GET") == 0){
     ret = handleGetRequest(connection);
-  }else if(strcmp(method, "POST")){
+  }else if(strcmp(method, "POST") == 0){
     ret = handlePostRequest();
-  }else if(strcmp(method, "PUT")){
+  }else if(strcmp(method, "PUT") == 0){
     ret = handlePutRequest();
   }else {
     ret = handleUnimplementeRequest();
