@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { FormsModule } from "@angular/forms";
 import { BookDetailsComponent } from './catalog/book-details/book-details.component';
+import { HttpClientModule }    from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { BookDetailsComponent } from './catalog/book-details/book-details.compon
   imports: [
       BrowserModule,
       AppRoutingModule,
-      FormsModule
+      FormsModule,
+      HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

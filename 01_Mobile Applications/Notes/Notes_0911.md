@@ -86,5 +86,8 @@ The Time is neccessary due to caching, (expiration time)
 
 ## C Commands to compile:
 
-gcc -I$HOME/include -L$HOME/lib main.c -lmicrohttpd -zl -o main
+gcc -I$HOME/include -L$HOME/lib main.c -lmicrohttpd -zl -ljansson -o main
 export LD_LIBRARY_PATH=$HOME/lib
+./configure --prefix=$HOME --with-gnunet=$HOME --with-microhttpd=/home/gabriel --with-jansson=/home/gabriel --with-libcurl=/home/gabriel --with-exchange=/home/gabriel
+
+execute: /root/bin/taler-twister

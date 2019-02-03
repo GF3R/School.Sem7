@@ -35,6 +35,34 @@ static int answer_to_connection (void *cls, struct MHD_Connection *connection,
                       const char *version, const char *upload_data,
                       size_t *upload_data_size, void **con_cls)
 {
+  int ret = 0;
+  if(strcmp(method, "GET")){
+    ret = handleGetRequest();
+  }else if(strcmp(method, "POST")){
+    ret = handlePostRequest();
+  }else if(strcmp(method, "PUT")){
+    ret = handlePutRequest();
+  }else {
+    ret = handleUnimplementeRequest();
+  }
+  return ret;
+}
+
+static int handleUnimplementeRequest(){
+  printf("unimpelmented request revieved");
+}
+
+static int handlePostRequest(){
+  printf("Post request revieved");
+}
+
+static int handlePutRequest(){
+  printf("Put request revieved");
+}
+
+
+static int handleGetRequest(){
+  printf("Get request revieved");
   const char *page = "<html><body>Hello, browser!</body></html>";
 
   json_t *j = json_pack("{s:1,s:1}", "hello", 5,"world",10);
@@ -50,19 +78,15 @@ static int answer_to_connection (void *cls, struct MHD_Connection *connection,
   (void)upload_data_size;  /* Unused. Silent compiler warning. */
   (void)con_cls;           /* Unused. Silent compiler warning. */
 
-  response =
-    MHD_create_response_from_buffer (strlen (j), (void *) j, 
+  response = MHD_create_response_from_buffer (strlen (j), (void *) j, 
 				     MHD_RESPMEM_PERSISTENT);
   MHD_add_response_header (response , MHD_HTTP_HEADER_CONTENT_TYPE, "text/html");
   ret = MHD_queue_response (connection, MHD_HTTP_OK, response);
   MHD_destroy_response (response);
-
   return ret;
 }
 
-
-int
-main (void)
+int main (void)
 {
   struct MHD_Daemon *daemon;
 

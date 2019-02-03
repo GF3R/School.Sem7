@@ -2,6 +2,9 @@ import {Book} from '../../logic/book';
 import {Component, Input, OnInit} from '@angular/core';
 import {BOOK_DATA} from "../../logic/import_bookdata";
 import {CatalogService} from "../catalog.service";
+import {HttpModule} from "@angular/http";
+import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'stuff',
@@ -17,7 +20,7 @@ export class CatalogComponent implements OnInit {
     error: string;
 
 
-    constructor(private catalogService: CatalogService) {
+    constructor(private catalogService: CatalogService, private router: Router ) {
         this.books = this.catalogService.getLastSearchResults();
     }
 
@@ -25,6 +28,12 @@ export class CatalogComponent implements OnInit {
         this.catalogService.searchBooks(this.keywords)
             .then(books => this.books = books)
             .catch(error => this.error = error);
+    }
+
+    selectBook(book : Book) {
+        this.selectedBook = book;
+        this.router.navigateByUrl('/book-detail?id='+book.isbn);
+
     }
 
     ngOnInit() {

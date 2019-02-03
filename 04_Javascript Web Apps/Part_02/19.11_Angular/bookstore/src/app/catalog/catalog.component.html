@@ -15,7 +15,7 @@
                 <th class="col-md-3" scope="col">ISBN</th>
                 <th class="col-md-4" scope="col">Price</th>
             </tr>
-            <tr *ngFor="let book of books; index as i" (click)="selectedBook=book">
+            <tr *ngFor="let book of books; index as i" (click)="selectBook(book)">
                 <td class="col-md-2, text-left" scope="row">{{i+1}}</td>
                 <td class="col-md-3, text-left">{{book.title}}</td>
                 <td class="col-md-3, text-left">{{book.isbn}}</td>
@@ -24,11 +24,12 @@
         </table>
     </div>
     <div *ngIf="error">
+        <br>
         <h2>{{error}}</h2>
     </div>
 
 </div>
 
 <div *ngIf="selectedBook">
-    <app-book-details [book]="selectedBook" (back)="selectedBook=null"></app-book-details>
+    <app-book-details  [book]="selectedBook" (back)="selectedBook=null"></app-book-details>
 </div>
