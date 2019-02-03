@@ -50,14 +50,17 @@ static int answer_to_connection (void *cls, struct MHD_Connection *connection,
 
 static int handleUnimplementeRequest(){
   printf("unimpelmented request revieved");
+  return 0;
 }
 
 static int handlePostRequest(){
   printf("Post request revieved");
+  return 0;
 }
 
 static int handlePutRequest(){
   printf("Put request revieved");
+  return 0;
 }
 
 
