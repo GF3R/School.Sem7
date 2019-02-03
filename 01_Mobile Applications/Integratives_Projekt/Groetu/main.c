@@ -37,7 +37,7 @@ static int answer_to_connection (void *cls, struct MHD_Connection *connection,
 {
   int ret = 0;
   if(strcmp(method, "GET")){
-    ret = handleGetRequest();
+    ret = handleGetRequest(*connection);
   }else if(strcmp(method, "POST")){
     ret = handlePostRequest();
   }else if(strcmp(method, "PUT")){
@@ -64,7 +64,7 @@ static int handlePutRequest(){
 }
 
 
-static int handleGetRequest(){
+static int handleGetRequest(struct MHD_Connection *connection){
   printf("Get request revieved");
   const char *page = "<html><body>Hello, browser!</body></html>";
 
