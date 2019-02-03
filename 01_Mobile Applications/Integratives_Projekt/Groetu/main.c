@@ -65,8 +65,8 @@ static int handleGetRequest(){
   printf("Get request revieved");
   const char *page = "<html><body>Hello, browser!</body></html>";
 
-  json_t *j = json_pack("{s:1,s:1}", "hello", 5,"world",10);
-  char s = json_dumps(j,0);
+  json_t *j = json_pack("{s:i,s:i}", "hello", 5, "world", 10);
+  char *s = json_dumps(j, 0);
 
   struct MHD_Response *response = MHD_create_response_from_callback(MHD_SIZE_UNKNOWN, 1024 , &crc , NULL, NULL);
   int ret;
@@ -78,7 +78,12 @@ static int handleGetRequest(){
   (void)upload_data_size;  /* Unused. Silent compiler warning. */
   (void)con_cls;           /* Unused. Silent compiler warning. */
 
+<<<<<<< HEAD
   response = MHD_create_response_from_buffer (strlen (j), (void *) j, 
+=======
+  response =
+    MHD_create_response_from_buffer (strlen (s), (void *) s, 
+>>>>>>> 40100e71e1bdde775d28ca17c7c37036d4837906
 				     MHD_RESPMEM_PERSISTENT);
   MHD_add_response_header (response , MHD_HTTP_HEADER_CONTENT_TYPE, "text/html");
   ret = MHD_queue_response (connection, MHD_HTTP_OK, response);
