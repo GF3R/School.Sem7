@@ -16,7 +16,7 @@
 
 #define PORT 8888
 
-static int handleGetRequest(void *cls, struct MHD_Connection *connection);
+static int handleGetRequest(struct MHD_Connection *connection);
 static int handleUnimplementeRequest();
 static int handlePostRequest();
 static int handlePutRequest();
@@ -41,7 +41,7 @@ static int answer_to_connection (void *cls, struct MHD_Connection *connection,
 {
   int ret = 0;
   if(strcmp(method, "GET")){
-    ret = handleGetRequest(cls,connection);
+    ret = handleGetRequest(connection);
   }else if(strcmp(method, "POST")){
     ret = handlePostRequest();
   }else if(strcmp(method, "PUT")){
