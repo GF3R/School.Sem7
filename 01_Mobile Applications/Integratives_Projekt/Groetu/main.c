@@ -41,7 +41,7 @@ static int answer_to_connection (void *cls, struct MHD_Connection *connection,
 {
   int ret = 0;
   if(strcmp(method, "GET")){
-    ret = handleGetRequest(*connection);
+    ret = handleGetRequest(*cls,*connection);
   }else if(strcmp(method, "POST")){
     ret = handlePostRequest();
   }else if(strcmp(method, "PUT")){
