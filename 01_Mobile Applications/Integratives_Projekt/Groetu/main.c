@@ -16,6 +16,10 @@
 
 #define PORT 8888
 
+static int handleGetRequest(void *cls, struct MHD_Connection *connection);
+static int handleUnimplementeRequest();
+static int handlePostRequest();
+static int handlePutRequest();
 
 static ssize_t crc(void *cls,
      uint64_t pos,
