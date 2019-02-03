@@ -78,12 +78,8 @@ static int handleGetRequest(){
   (void)upload_data_size;  /* Unused. Silent compiler warning. */
   (void)con_cls;           /* Unused. Silent compiler warning. */
 
-<<<<<<< HEAD
-  response = MHD_create_response_from_buffer (strlen (j), (void *) j, 
-=======
   response =
     MHD_create_response_from_buffer (strlen (s), (void *) s, 
->>>>>>> 40100e71e1bdde775d28ca17c7c37036d4837906
 				     MHD_RESPMEM_PERSISTENT);
   MHD_add_response_header (response , MHD_HTTP_HEADER_CONTENT_TYPE, "text/html");
   ret = MHD_queue_response (connection, MHD_HTTP_OK, response);
