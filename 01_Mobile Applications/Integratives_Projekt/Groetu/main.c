@@ -17,7 +17,7 @@
 #define PORT 8888
 
 
-static ssize_t crc (void *cls,
+static ssize_t crc(void *cls,
      uint64_t pos,
      char *buf,
      size_t size_max)
@@ -73,13 +73,7 @@ static int handleGetRequest(){
 
   struct MHD_Response *response = MHD_create_response_from_callback(MHD_SIZE_UNKNOWN, 1024 , &crc , NULL, NULL);
   int ret;
-  (void)cls;               /* Unused. Silent compiler warning. */
-  (void)url;               /* Unused. Silent compiler warning. */
-  (void)method;            /* Unused. Silent compiler warning. */
-  (void)version;           /* Unused. Silent compiler warning. */
-  (void)upload_data;       /* Unused. Silent compiler warning. */
-  (void)upload_data_size;  /* Unused. Silent compiler warning. */
-  (void)con_cls;           /* Unused. Silent compiler warning. */
+    
 
   response =
     MHD_create_response_from_buffer (strlen (s), (void *) s, 
